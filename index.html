@@ -11,24 +11,24 @@
     <button class="answerButton" onclick="location.href='thankyou.html'">
       Sii!!
     </button>
-    <button class="answerButton" id="noButton">NO  >>:(       </button>
+    <button class="answerButton" id="noButton">no ewww</button>
     <br />
-    <img id="sadImage" src="mouse.gif" alt="sad" class="responsive" />
+    <img id="startImage" src="mouse.gif" alt="sad" class="responsive" />
 
     <script>
       let noButtonClickCount = 0;
-      const sadImage = document.getElementById("sadImage");
+      const startImage = document.getElementById("startImage");
       document
         .getElementById("noButton")
         .addEventListener("click", function () {
           noButtonClickCount++;
           if (noButtonClickCount > 10) {
             // Cambia l'immagine
-            sadImage.src = "angry.jpg"; // Inserisci il percorso della nuova immagine
+            startImage.src = "angry.jpg"; // Inserisci il percorso della nuova immagine
             
             // Rendi l'immagine più grande
-            sadImage.style.width = "600px"; // Aumenta la larghezza dell'immagine
-            sadImage.style.height = "auto"; // Mantieni l'aspetto proporzionato
+            startImage.style.width = "600px"; // Aumenta la larghezza dell'immagine
+            startImage.style.height = "auto"; // Mantieni l'aspetto proporzionato
           }
           var yesButton = document.querySelector(
             'button[onclick*="thankyou.html"]'
