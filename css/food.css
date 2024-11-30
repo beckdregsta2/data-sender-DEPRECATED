@@ -5,36 +5,60 @@ body {
   background-color: #fff5e4;
   color: #ff9494;
 }
+
 #foodquestion {
   font-size: 50px;
   margin-bottom: 30px;
 }
+
 .food-item {
   display: inline-block;
   margin: 10px;
   vertical-align: top;
   color: #ff9494;
 }
+
 .food-item img {
   height: 200px;
   width: 200px;
   border-radius: 50%;
-  border: 5px solid #ff9494;
+  border: 5px solid #ff9494; /* Bordo rosso per immagini non selezionate */
   object-fit: cover;
   padding: 10px;
+  cursor: pointer; /* Indica che l'immagine è cliccabile */
+  transition: border-color 0.3s ease; /* Transizione morbida del colore del bordo */
 }
+
+/* Modifica il bordo delle immagini quando selezionate */
+.food-item img.selected {
+  border-color: #4caf50; /* Verde per immagini selezionate */
+}
+
 .food-item label {
   display: block;
+  margin-top: 10px;
 }
+
+/* Nascondi i checkbox (li rimuoviamo completamente) */
+.food-item input[type="checkbox"] {
+  display: none;
+}
+
 .button {
   padding: 10px 20px;
   font-size: 18px;
   cursor: pointer;
   margin: 10px;
-  font-family: "courier";
+  font-family: "Courier";
   margin-bottom: 20px;
   background-color: #ffe3e1;
   color: #e67373;
   border-radius: 12px;
   border: 2px solid #ffe3e1;
+}
+
+.button:hover {
+  background-color: #ff9494;
+  color: #fff;
+  border-color: #ff9494;
 }

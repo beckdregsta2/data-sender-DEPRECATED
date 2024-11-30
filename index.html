@@ -13,12 +13,23 @@
     </button>
     <button class="answerButton" id="noButton">NO  >>:(       </button>
     <br />
-    <img src="mouse.gif" alt="sad" class="responsive" />
+    <img id="sadImage" src="mouse.gif" alt="sad" class="responsive" />
 
     <script>
+      let noButtonClickCount = 0;
+      const sadImage = document.getElementById("sadImage");
       document
         .getElementById("noButton")
         .addEventListener("click", function () {
+          noButtonClickCount++;
+          if (noButtonClickCount > 10) {
+            // Cambia l'immagine
+            sadImage.src = "angry.jpg"; // Inserisci il percorso della nuova immagine
+            
+            // Rendi l'immagine più grande
+            sadImage.style.width = "600px"; // Aumenta la larghezza dell'immagine
+            sadImage.style.height = "auto"; // Mantieni l'aspetto proporzionato
+          }
           var yesButton = document.querySelector(
             'button[onclick*="thankyou.html"]'
           );

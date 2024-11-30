@@ -43,6 +43,18 @@
           ><input type="checkbox" name="dessert" value="Pesce" />Pesce</label>
       </div>
     </div>
+    <script>
+      // Seleziona tutte le immagini
+      const dessertImages = document.querySelectorAll('.dessert-item img');
+
+      // Aggiungi evento di clic per ogni immagine
+      dessertImages.forEach(img => {
+        img.addEventListener('click', () => {
+          // Alterna la classe 'selected' per cambiare il bordo
+          img.classList.toggle('selected');
+        });
+      });
+    </script>
     <button class="button" onclick="location.href='activities.html'">
       Continua!!!
     </button>

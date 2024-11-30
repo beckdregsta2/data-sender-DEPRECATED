@@ -90,9 +90,65 @@
         />Cucire</label
       >
     </div>
+    <div class="new-activity">
+      <h3>Aggiungi una nuova attività</h3>
+      <input type="text" id="newActivity" placeholder="Scrivi una nuova attività" />
+      <button id="addActivityButton">Aggiungi</button>
+    </div>
+
+    <script>
+      // Funzione per gestire il clic sulle immagini
+      function setupImageClickHandlers() {
+        const activityItems = document.querySelectorAll('.activity-item');
+        activityItems.forEach((item) => {
+          const img = item.querySelector('img');
+          const checkbox = item.querySelector('input[type="checkbox"]');
+          img.addEventListener('click', () => {
+            // Alterna la selezione del checkbox
+            checkbox.checked = !checkbox.checked;
+            // Aggiungi/rimuovi classe di selezione all'immagine
+            img.classList.toggle('selected', checkbox.checked);
+          });
+        });
+      }
+
+      // Inizializza gli handler al caricamento della pagina
+      setupImageClickHandlers();
+
+      // Riferimento agli elementi HTML
+      const newActivityInput = document.getElementById('newActivity');
+      const addActivityButton = document.getElementById('addActivityButton');
+      const activitiesContainer = document.querySelector('.activities-selection');
+
+      // Funzione per aggiungere una nuova attività
+      addActivityButton.addEventListener('click', () => {
+        const newActivityValue = newActivityInput.value.trim();
+        if (newActivityValue) {
+          // Crea un nuovo elemento HTML per l'attività
+          const newActivityItem = document.createElement('div');
+          newActivityItem.className = 'activity-item';
+          newActivityItem.innerHTML = `
+            <img src="default.gif" alt="${newActivityValue}" />
+            <input type="checkbox" name="activities" value="${newActivityValue}" />
+            <label>${newActivityValue}</label>
+          `;
+
+          // Aggiungi il nuovo elemento al container
+          activitiesContainer.appendChild(newActivityItem);
+
+          // Aggiungi l'handler di clic alla nuova immagine
+          setupImageClickHandlers();
+
+          // Resetta il campo di input
+          newActivityInput.value = '';
+        } else {
+          alert('Per favore, inserisci un\'attività valida.');
+        }
+      });
+    </script>
   </div>
     <button class="button" onclick="location.href='lastpage.html'">
-      Last page
+      Ultima cosa
     </button>
   </body>
 </html>
