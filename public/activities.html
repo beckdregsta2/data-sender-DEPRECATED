@@ -146,19 +146,6 @@
         }
       });
     </script>
-    <script type="module">
-      import { database, ref, push } from "./firebase-config.js";
-
-      const continueButton = document.querySelector("button");
-
-      continueButton.addEventListener("click", () => {
-        const selectedActivities = Array.from(
-          document.querySelectorAll('input[name="activities"]:checked')
-        ).map((checkbox) => checkbox.value);
-
-        push(ref(database, "responses/user1/activities"), { selectedActivities });
-      });
-    </script>
 
   </div>
     <button class="button" onclick="location.href='lastpage.html'">

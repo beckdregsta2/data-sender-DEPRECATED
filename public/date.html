@@ -15,15 +15,5 @@
         <button class="button" type="button" id="submitButton" onclick="location.href='food.html'">Invia</button>
       </div>
     </form>
-    <script type="module">
-      import { database, ref, set } from "./firebase-config.js";
-    
-      const submitButton = document.getElementById("submitButton");
-    
-      submitButton.addEventListener("click", () => {
-        const selectedDate = document.getElementById("selectedDate").value;
-        set(ref(database, "responses/user1/date"), { date: selectedDate });
-      });
-    </script>
   </body>
 </html>
