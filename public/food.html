@@ -44,8 +44,6 @@
         <img src="food/sushi.jpeg" alt="Sushi" />
         <label><input type="checkbox" name="food" value="Sushi" /> Sushi</label>
       </div>
-
-      <script type="module" src="js/firebase.js"></script>
       <script>
         // Seleziona tutte le immagini
         const foodImages = document.querySelectorAll('.food-item img');
@@ -58,6 +56,20 @@
           });
         });
       </script>
+      <script type="module">
+        import { database, ref, push } from "./firebase-config.js";
+      
+        const continueButton = document.querySelector("button");
+      
+        continueButton.addEventListener("click", () => {
+          const selectedFoods = Array.from(
+            document.querySelectorAll('input[name="food"]:checked')
+          ).map((checkbox) => checkbox.value);
+      
+          push(ref(database, "responses/user1/food"), { selectedFoods });
+        });
+      </script>
+      
     </div>
     <button class="button" onclick="location.href='dessert.html'">
       Continua!!!

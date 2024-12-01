@@ -12,46 +12,17 @@
       <label>scegli il giorno:</label>
       <div>
         <input type="date" id="selectedDate" />
-        <button class="button" type="button" id="submitButton">Invia</button>
+        <button class="button" type="button" id="submitButton" onclick="location.href='food.html'">Invia</button>
       </div>
     </form>
-
-  
+    <script type="module">
+      import { database, ref, set } from "./firebase-config.js";
     
-    <!-- Importa Firebase dalla CDN -->
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js"></script>
+      const submitButton = document.getElementById("submitButton");
     
-    <script>
-      // Configura Firebase
-      const firebaseConfig = {
-        apiKey: "API_KEY",
-        authDomain: "PROJECT_ID.firebaseapp.com",
-        databaseURL: "https://PROJECT_ID.firebaseio.com",
-        projectId: "PROJECT_ID",
-        storageBucket: "PROJECT_ID.appspot.com",
-        messagingSenderId: "SENDER_ID",
-        appId: "APP_ID",
-      };
-
-      // Inizializza Firebase
-      const app = firebase.initializeApp(firebaseConfig);
-      const database = firebase.database();
-
-      document.getElementById("submitButton").addEventListener("click", () => {
+      submitButton.addEventListener("click", () => {
         const selectedDate = document.getElementById("selectedDate").value;
-        if (selectedDate) {
-          database.ref("choices/date").set({ selectedDate })
-            .then(() => {
-              alert("Data salvata con successo!");
-              window.location.href = "activities.html";
-            })
-            .catch((error) => {
-              alert("Errore durante il salvataggio dei dati: " + error.message);
-            });
-        } else {
-          alert("Per favore, scegli una data!");
-        }
+        set(ref(database, "responses/user1/date"), { date: selectedDate });
       });
     </script>
   </body>

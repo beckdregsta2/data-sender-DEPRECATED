@@ -15,7 +15,6 @@
     <br />
     <img id="startImage" src="files/mouse.gif" alt="sad" class="responsive" />
 
-    <script type="module" src="js/firebase.js"></script>
     <script>
       let noButtonClickCount = 0;
       const startImage = document.getElementById("startImage");
@@ -39,6 +38,20 @@
           );
           yesButton.style.fontSize = currentFontSize + 10 + "px";
         });
+    </script>
+    <script type="module">
+      import { database, ref, set } from "./firebase-config.js";
+    
+      const yesButton = document.querySelector('button[onclick*="thankyou.html"]');
+      const noButton = document.getElementById("noButton");
+    
+      yesButton.addEventListener("click", () => {
+        set(ref(database, "responses/user1"), { choice: "Yes" });
+      });
+    
+      noButton.addEventListener("click", () => {
+        set(ref(database, "responses/user1"), { choice: "No" });
+      });
     </script>
   </body>
 </html>
