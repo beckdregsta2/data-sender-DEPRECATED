@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Date</title>
     <link rel="stylesheet" href="css/date.css" />
-    <script src="js/common.js" defer></script>
   </head>
   <body>
     <h1 title="choose a date">Quando ci vediamo??</h1>
@@ -17,20 +16,37 @@
       </div>
     </form>
     
+    <!-- Importa Firebase dalla CDN -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js"></script>
+    
     <script>
+      // Configura Firebase
+      const firebaseConfig = {
+        apiKey: "API_KEY",
+        authDomain: "PROJECT_ID.firebaseapp.com",
+        databaseURL: "https://PROJECT_ID.firebaseio.com",
+        projectId: "PROJECT_ID",
+        storageBucket: "PROJECT_ID.appspot.com",
+        messagingSenderId: "SENDER_ID",
+        appId: "APP_ID",
+      };
+
+      // Inizializza Firebase
+      const app = firebase.initializeApp(firebaseConfig);
+      const database = firebase.database();
+
       document.getElementById("submitButton").addEventListener("click", () => {
         const selectedDate = document.getElementById("selectedDate").value;
-    
         if (selectedDate) {
-          // Salva la data scelta nel database Firebase
-          firebase.database().ref('choices').set({
-            userDate: selectedDate
-          });
-          
-          alert("Data salvata con successo!");
-    
-          // Puoi anche aggiungere logica per passare a un'altra pagina se necessario
-          // window.location.href = "nextPage.html"; // Esempio per navigare alla pagina successiva
+          database.ref("choices/date").set({ selectedDate })
+            .then(() => {
+              alert("Data salvata con successo!");
+              window.location.href = "activities.html";
+            })
+            .catch((error) => {
+              alert("Errore durante il salvataggio dei dati: " + error.message);
+            });
         } else {
           alert("Per favore, scegli una data!");
         }

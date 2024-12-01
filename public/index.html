@@ -15,6 +15,7 @@
     <br />
     <img id="startImage" src="files/mouse.gif" alt="sad" class="responsive" />
 
+    <script type="module" src="js/firebase.js"></script>
     <script>
       let noButtonClickCount = 0;
       const startImage = document.getElementById("startImage");
@@ -36,7 +37,7 @@
           var currentFontSize = parseInt(
             window.getComputedStyle(yesButton).fontSize
           );
-          yesButton.style.fontSize = currentFontSize + 10 + "px"; // Increase font size by 5px
+          yesButton.style.fontSize = currentFontSize + 10 + "px";
         });
     </script>
   </body>
