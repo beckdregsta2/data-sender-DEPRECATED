@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Date</title>
+    <link rel="stylesheet" href="css/date.css" />
+    <script src="js/common.js" defer></script>
+  </head>
+  <body>
+    <h1 title="choose a date">Quando ci vediamo??</h1>
+    <form class="form-group">
+      <label>scegli il giorno:</label>
+      <div>
+        <input type="date" id="selectedDate" />
+        <button class="button" type="button" id="submitButton">Invia</button>
+      </div>
+    </form>
+    
+    <script>
+      document.getElementById("submitButton").addEventListener("click", () => {
+        const selectedDate = document.getElementById("selectedDate").value;
+    
+        if (selectedDate) {
+          // Salva la data scelta nel database Firebase
+          firebase.database().ref('choices').set({
+            userDate: selectedDate
+          });
+          
+          alert("Data salvata con successo!");
+    
+          // Puoi anche aggiungere logica per passare a un'altra pagina se necessario
+          // window.location.href = "nextPage.html"; // Esempio per navigare alla pagina successiva
+        } else {
+          alert("Per favore, scegli una data!");
+        }
+      });
+    </script>
+  </body>
+</html>
